@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="TalmudFormulas.Views.Controls.WitnessCard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Tapped="OnTapped">
+
+    <Grid Margin="8,3" >
+        <!-- accent strip on the right (RTL = leading edge) -->
+        <Border x:Name="AccentStrip"
+                Width="3"
+                HorizontalAlignment="Right"
+                Margin="0,8,0,8"
+                CornerRadius="2" />
+
+        <Border x:Name="OuterBorder"
+                CornerRadius="10"
+                Margin="0,0,6,0"
+                BorderThickness="1">
+            <StackPanel Padding="16,12,16,14" Spacing="8">
+                <Border x:Name="NameBorder"
+                        HorizontalAlignment="Right"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="10,3">
+                    <TextBlock x:Name="NameText"
+                               FontSize="11"
+                               FontWeight="SemiBold" />
+                </Border>
+                <RichTextBlock x:Name="ContentBlock"
+                               TextWrapping="Wrap"
+                               IsTextSelectionEnabled="True"
+                               TextAlignment="Left"
+                               LineHeight="24"
+                               FlowDirection="RightToLeft" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

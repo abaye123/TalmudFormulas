@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentDialog
+    x:Class="TalmudFormulas.Views.SettingsDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="הגדרות תצוגה"
+    PrimaryButtonText="שמור"
+    CloseButtonText="ביטול"
+    DefaultButton="Primary"
+    FlowDirection="RightToLeft"
+    PrimaryButtonClick="OnPrimaryButtonClick">
+
+    <ContentDialog.Resources>
+        <!-- ברירת המחדל של ContentDialog ב-WinUI 3 היא ~548px; מרחיבים -->
+        <x:Double x:Key="ContentDialogMinWidth">720</x:Double>
+        <x:Double x:Key="ContentDialogMaxWidth">820</x:Double>
+    </ContentDialog.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="680">
+        <StackPanel Spacing="12" Padding="2,4,2,2" MinWidth="680">
+
+            <!-- ── גופן ── -->
+            <Border CornerRadius="{StaticResource CardCornerRadius}"
+                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    Padding="16,14">
+                <StackPanel Spacing="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <FontIcon Grid.Column="0"
+                                  FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                  Glyph="&#xE8D2;"
+                                  FontSize="16"
+                                  Margin="0,0,12,0"
+                                  VerticalAlignment="Center"
+                                  Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="גופן" FontSize="14" FontWeight="SemiBold" />
+                            <TextBlock Text="בחר גופן עברי לטקסט הראשי"
+                                       FontSize="12"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                        </StackPanel>
+                    </Grid>
+                    <AutoSuggestBox x:Name="FontSearchBox"
+                                    PlaceholderText="חפש גופן..."
+                                    TextChanged="OnFontSearchChanged"
+                                    SuggestionChosen="OnFontSuggestionChosen"
+                                    QueryIcon="Find" />
+                    <ComboBox x:Name="FontCombo"
+                              HorizontalAlignment="Stretch"
+                              SelectionChanged="OnFontSelectionChanged"
+                              FontSize="14" />
+                </StackPanel>
+            </Border>
+
+            <!-- ── גודל גופן ── -->
+            <Border CornerRadius="{StaticResource CardCornerRadius}"
+                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    Padding="16,14">
+                <StackPanel Spacing="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <FontIcon Grid.Column="0"
+                                  FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                  Glyph="&#xE1C8;"
+                                  FontSize="16"
+                                  Margin="0,0,12,0"
+                                  VerticalAlignment="Center"
+                                  Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="גודל גופן" FontSize="14" FontWeight="SemiBold" />
+                            <TextBlock Text="בין 8 ל-36 פיקסלים"
+                                       FontSize="12"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                        </StackPanel>
+                        <NumberBox x:Name="SizeBox"
+                                   Grid.Column="2"
+                                   Width="116"
+                                   Minimum="8"
+                                   Maximum="36"
+                                   SpinButtonPlacementMode="Compact"
+                                   ValueChanged="OnSizeChanged" />
+                    </Grid>
+                    <Slider x:Name="SizeSlider"
+                            Minimum="8"
+                            Maximum="36"
+                            StepFrequency="1"
+                            TickFrequency="4"
+                            ValueChanged="OnSliderChanged"
+                            ThumbToolTipValueConverter="{x:Null}" />
+                </StackPanel>
+            </Border>
+
+            <!-- ── ערכת נושא ── -->
+            <Border CornerRadius="{StaticResource CardCornerRadius}"
+                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    Padding="16,14">
+                <StackPanel Spacing="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <FontIcon Grid.Column="0"
+                                  FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                  Glyph="&#xE790;"
+                                  FontSize="16"
+                                  Margin="0,0,12,0"
+                                  VerticalAlignment="Center"
+                                  Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="ערכת נושא" FontSize="14" FontWeight="SemiBold" />
+                            <TextBlock Text="בחר את מראה האפליקציה"
+                                       FontSize="12"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid ColumnSpacing="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <RadioButton x:Name="SystemRadio"
+                                     Grid.Column="0"
+                                     GroupName="Theme"
+                                     Padding="6,8"
+                                     Checked="OnThemeChanged">
+                            <StackPanel Spacing="6" Margin="6,0,0,0">
+                                <TextBlock Text="מערכת" FontSize="13" FontWeight="SemiBold" />
+                                <Border MinWidth="160" Height="56" HorizontalAlignment="Stretch"
+                                        CornerRadius="8"
+                                        BorderThickness="1"
+                                        BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
+                                        Background="{ThemeResource LayerFillColorDefaultBrush}"
+                                        Padding="8">
+                                    <StackPanel>
+                                        <Border Background="{ThemeResource AccentFillColorDefaultBrush}" Height="12" CornerRadius="2" />
+                                        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                                Height="22" CornerRadius="2" Margin="0,4,0,0">
+                                            <TextBlock Text="Aleph"
+                                                       FontSize="11"
+                                                       HorizontalAlignment="Right"
+                                                       VerticalAlignment="Center"
+                                                       Margin="6,0"
+                                                       Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
+                                        </Border>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </RadioButton>
+
+                        <RadioButton x:Name="ClassicRadio"
+                                     Grid.Column="1"
+                                     GroupName="Theme"
+                                     Padding="6,8"
+                                     Checked="OnThemeChanged">
+                            <StackPanel Spacing="6" Margin="6,0,0,0">
+                                <TextBlock Text="קלאסי" FontSize="13" FontWeight="SemiBold" />
+                                <Border MinWidth="160" Height="56" HorizontalAlignment="Stretch"
+                                        CornerRadius="8"
+                                        BorderThickness="1"
+                                        BorderBrush="#D5DDE5"
+                                        Background="#F8FAFC"
+                                        Padding="8">
+                                    <StackPanel>
+                                        <Border Background="#005FB8" Height="12" CornerRadius="2" />
+                                        <Border Background="#FFFFFF" Height="22" CornerRadius="2" Margin="0,4,0,0">
+                                            <TextBlock Text="Aleph" FontSize="11"
+                                                       Foreground="#1F1F1F"
+                                                       HorizontalAlignment="Right"
+                                                       VerticalAlignment="Center"
+                                                       Margin="6,0" />
+                                        </Border>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </RadioButton>
+
+                        <RadioButton x:Name="ColorfulRadio"
+                                     Grid.Column="2"
+                                     GroupName="Theme"
+                                     Padding="6,8"
+                                     Checked="OnThemeChanged">
+                            <StackPanel Spacing="6" Margin="6,0,0,0">
+                                <TextBlock Text="ספר חם" FontSize="13" FontWeight="SemiBold" />
+                                <Border MinWidth="160" Height="56" HorizontalAlignment="Stretch"
+                                        CornerRadius="8"
+                                        BorderThickness="1"
+                                        BorderBrush="#A06A40"
+                                        Background="#FBF5E9"
+                                        Padding="8">
+                                    <StackPanel>
+                                        <Border Background="#F2E8D0" Height="12" CornerRadius="2" />
+                                        <Border Background="#FFFDF8" Height="22" CornerRadius="2" Margin="0,4,0,0">
+                                            <TextBlock Text="Aleph" FontSize="11"
+                                                       Foreground="#1A0800"
+                                                       HorizontalAlignment="Right"
+                                                       VerticalAlignment="Center"
+                                                       Margin="6,0" />
+                                        </Border>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </RadioButton>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- ── תצוגה רציפה ── -->
+            <Border CornerRadius="{StaticResource CardCornerRadius}"
+                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    Padding="16,14">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <FontIcon Grid.Column="0"
+                              FontFamily="{StaticResource SymbolThemeFontFamily}"
+                              Glyph="&#xE8A1;"
+                              FontSize="16"
+                              Margin="0,0,12,0"
+                              VerticalAlignment="Center"
+                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="תצוגה רציפה" FontSize="14" FontWeight="SemiBold" />
+                        <TextBlock Text="טקסט ללא מסגרות בין קטעים"
+                                   FontSize="12"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                    </StackPanel>
+                    <ToggleSwitch x:Name="ContinuousToggle"
+                                  Grid.Column="2"
+                                  OnContent=""
+                                  OffContent=""
+                                  MinWidth="0"
+                                  VerticalAlignment="Center" />
+                </Grid>
+            </Border>
+
+            <!-- ── תצוגה מקדימה ── -->
+            <Border CornerRadius="{StaticResource CardCornerRadius}"
+                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    Padding="16,14">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="תצוגה מקדימה" FontSize="13" FontWeight="SemiBold" />
+                    <Border BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Padding="14,10"
+                            Background="{ThemeResource LayerFillColorDefaultBrush}">
+                        <TextBlock x:Name="PreviewText"
+                                   Text="אמר רבי אלעזר אמר רבי חנינא: תלמידי חכמים מרבים שלום בעולם"
+                                   TextWrapping="Wrap"
+                                   Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
+                    </Border>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</ContentDialog>

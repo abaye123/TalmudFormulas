@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="TalmudFormulas.Views.Controls.WordsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="using:TalmudFormulas.Views.Controls"
+    mc:Ignorable="d">
+
+    <!-- FlowDirection=LeftToRight: ה-RtlFlowPanel מסדר children בעצמו מ-x=usable
+         שמאלה. כדי שזה יחושב נכון, צריך מערכת קואורדינטות LTR. הטקסט העברי
+         בתוך כל מילה ירונדר RTL ע"י מנוע ה-bidi של DirectWrite. -->
+    <Grid Padding="18,14,18,20" FlowDirection="LeftToRight">
+        <local:RtlFlowPanel x:Name="WordsPanel"
+                            HorizontalSpacing="3"
+                            VerticalSpacing="6" />
+    </Grid>
+</UserControl>
