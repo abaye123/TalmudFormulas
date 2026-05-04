@@ -7,20 +7,20 @@
 
 #define AppName "TalmudFormulas"
 #define AppNameH "נוסחאות התלמוד - הכי גרסינן"
-#define AppVersion "1.0.0"
+#define AppVersion "1.0.1"
 #define AppPublisher "abaye"
 #define AppExeName "TalmudFormulas.exe"
 #define SourceFolder "..\bin\x64\Release\net8.0-windows10.0.19041.0"
 #define WinAppRuntimeInstaller "Redist\WindowsAppRuntimeInstall-x64.exe"
 
 [Setup]
-AppId={{7F2E4C1B-8A3D-4B6E-A5C9-1F8D7E2A9B4C}
+AppId={{87D93169-1043-4644-996E-7853C109EF4D}}
 AppName={#AppName}
 AppVersion={#AppVersion}
 AppPublisher={#AppPublisher}
 AppSupportURL=https://github.com/abaye123/TalmudFormulas
 DefaultDirName={autopf}\{#AppName}
-DefaultGroupName={#AppName}
+DefaultGroupName={#AppNameH}
 DisableProgramGroupPage=yes
 OutputDir=..\Release
 OutputBaseFilename=TalmudFormulas-Setup-{#AppVersion}
